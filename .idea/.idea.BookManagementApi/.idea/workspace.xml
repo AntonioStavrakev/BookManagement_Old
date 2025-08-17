@@ -8,7 +8,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7b6892d-5bdc-492c-bb22-d60647193f3a" name="Changes" comment="" />
+    <list default="true" id="c7b6892d-5bdc-492c-bb22-d60647193f3a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BookManagementApi/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BookManagementApi/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BookManagementApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BookManagementApi/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Api/BookManagement.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Api/BookManagement.Api.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Api/obj/BookManagement.Api.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Api/obj/BookManagement.Api.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Api/obj/Debug/net8.0/BookManagement.Api.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Api/obj/Debug/net8.0/BookManagement.Api.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Api/obj/Debug/net8.0/BookManagement.Api.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Api/obj/Debug/net8.0/BookManagement.Api.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Api/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Api/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Api/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Api/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Api/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Api/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Api/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Api/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Infrastructure/BookManagement.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Infrastructure/BookManagement.Infrastructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Infrastructure/obj/BookManagement.Infrastructure.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Infrastructure/obj/BookManagement.Infrastructure.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Infrastructure/obj/Debug/net8.0/BookManagement.Infrastructure.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Infrastructure/obj/Debug/net8.0/BookManagement.Infrastructure.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Infrastructure/obj/Debug/net8.0/BookManagement.Infrastructure.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Infrastructure/obj/Debug/net8.0/BookManagement.Infrastructure.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Infrastructure/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Infrastructure/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Infrastructure/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Infrastructure/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Infrastructure/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Infrastructure/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Infrastructure/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Infrastructure/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Services/BookManagement.Services.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Services/BookManagement.Services.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Services/obj/BookManagement.Services.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Services/obj/BookManagement.Services.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Services/obj/Debug/net8.0/BookManagement.Services.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Services/obj/Debug/net8.0/BookManagement.Services.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Services/obj/Debug/net8.0/BookManagement.Services.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Services/obj/Debug/net8.0/BookManagement.Services.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Services/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Services/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Services/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Services/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Services/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Services/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement.Services/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement.Services/obj/rider.project.restore.info" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,9 +44,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="318Mad8bBHHRMqBEPLzowi6cOD4" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -35,10 +63,14 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory",
+      "repository"
+    ],
     "DatabaseDriversLRU": [
       "mysql",
       "sqlite"
@@ -84,16 +116,28 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1754901311735</updated>
-      <workItem from="1754901313263" duration="4277000" />
+      <workItem from="1754901313263" duration="5991000" />
     </task>
+    <task id="LOCAL-00001" summary="First part">
+      <option name="closed" value="true" />
+      <created>1755103288033</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1755103288033</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="First part" />
+    <option name="LAST_COMMIT_MESSAGE" value="First part" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
