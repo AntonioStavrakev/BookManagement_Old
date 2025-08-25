@@ -55,7 +55,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[15.0.1, )"
+              "version": "[13.0.1, )"
             },
             "FluentValidation.AspNetCore": {
               "target": "Package",
@@ -162,7 +162,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[15.0.1, )"
+              "version": "[13.0.1, )"
             },
             "FluentValidation.AspNetCore": {
               "target": "Package",
@@ -262,7 +262,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[15.0.1, )"
+              "version": "[13.0.1, )"
             },
             "FluentValidation.AspNetCore": {
               "target": "Package",
@@ -365,7 +365,7 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[15.0.1, )"
+              "version": "[13.0.1, )"
             },
             "FluentValidation.AspNetCore": {
               "target": "Package",

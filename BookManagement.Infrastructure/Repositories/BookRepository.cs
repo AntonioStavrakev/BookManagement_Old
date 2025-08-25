@@ -68,5 +68,9 @@ public class BookRepository:IBookRepository
             .Where(a => a.BookAuthorList.Any(ba => ba.BookId == bookId))
             .ToList();
     }
-    
+
+    public IEnumerable<Book> GetBooksByPublisherId(int publisherId)
+    {
+        return _context.Books.Where(b => b.PublisherId == publisherId).ToList();
+    }
 }

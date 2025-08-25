@@ -58,9 +58,5 @@ public class PublisherRepository:IPublisherRepository
             _context.SaveChanges();
         }
     }
-
-    public IEnumerable<Book> GetBooksByPublisherId(int publisherId)
-    {
-        return _context.Books.Where(b => b.PublisherId == publisherId).ToList();
-    }
+    
 }
