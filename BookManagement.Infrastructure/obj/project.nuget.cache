@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zE76WUM81TU=",
+  "dgSpecHash": "wlVvr2YNdkY=",
   "success": true,
-  "projectFilePath": "/Users/antoniostavrakev/Documents/C#/VSG/BookManagementApi/BookManagement.Infrastructure/BookManagement.Infrastructure.csproj",
+  "projectFilePath": "/Users/antoniostavrakev/RiderProjects/BookManagement2/BookManagement.Infrastructure/BookManagement.Infrastructure.csproj",
   "expectedPackageFiles": [
     "/Users/antoniostavrakev/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
     "/Users/antoniostavrakev/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/antoniostavrakev/Documents/C#/VSG/BookManagementApi/BookManagement.Core/BookManagement.Core.csproj": {}
+    "/Users/antoniostavrakev/RiderProjects/BookManagement2/BookManagement.Core/BookManagement.Core.csproj": {}
   },
   "projects": {
-    "/Users/antoniostavrakev/Documents/C#/VSG/BookManagementApi/BookManagement.Core/BookManagement.Core.csproj": {
+    "/Users/antoniostavrakev/RiderProjects/BookManagement2/BookManagement.Core/BookManagement.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/antoniostavrakev/Documents/C#/VSG/BookManagementApi/BookManagement.Core/BookManagement.Core.csproj",
+        "projectUniqueName": "/Users/antoniostavrakev/RiderProjects/BookManagement2/BookManagement.Core/BookManagement.Core.csproj",
         "projectName": "BookManagement.Core",
-        "projectPath": "/Users/antoniostavrakev/Documents/C#/VSG/BookManagementApi/BookManagement.Core/BookManagement.Core.csproj",
+        "projectPath": "/Users/antoniostavrakev/RiderProjects/BookManagement2/BookManagement.Core/BookManagement.Core.csproj",
         "packagesPath": "/Users/antoniostavrakev/.nuget/packages/",
-        "outputPath": "/Users/antoniostavrakev/Documents/C#/VSG/BookManagementApi/BookManagement.Core/obj/",
+        "outputPath": "/Users/antoniostavrakev/RiderProjects/BookManagement2/BookManagement.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/antoniostavrakev/.nuget/NuGet/NuGet.Config"
