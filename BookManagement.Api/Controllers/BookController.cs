@@ -28,7 +28,7 @@ public class BookController : ControllerBase
     }
 
     [HttpPost]
-    public BookGeneralDTO Post([FromBody] BookCreateDTO book)
+    public BookGeneralDTO Post([FromBody] BookPropertiesDTO book)
     {
         return _bookService.Create(book);
     }

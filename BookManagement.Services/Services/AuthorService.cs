@@ -1,5 +1,6 @@
 using AutoMapper;
 using BookManagement.Core.Models;
+using BookManagement.Core.Repositories;
 using BookManagement.Infrastructure.Entities;
 using BookManagement.Services.Models.AuthorModels.DTOs;
 using BookManagement.Services.Models.AuthorModels.Interfaces;
@@ -9,67 +10,50 @@ namespace BookManagement.Services.Services;
 
 public class AuthorService : IAuthorService
 {
-    private readonly BookManagementDbContext _context;
+    private readonly IAuthorRepository _repository;
     private readonly IMapper _mapper;
-    public AuthorService(BookManagementDbContext context, IMapper mapper)
+    public AuthorService(IAuthorRepository repository, IMapper mapper)
     {
-        _context = context;
+        _repository = repository;
         _mapper = mapper;
     }
     public IEnumerable<AuthorGeneralDTO> GetAll()
     {
-        return _mapper.Map<IEnumerable<AuthorGeneralDTO>>(_context.Authors.ToList());
+        var authors = _repository.GetAll();
+        var result = _mapper.Map<IEnumerable<AuthorGeneralDTO>>(authors);
+        return result;
     }
 
     public AuthorGeneralDTO GetById(int id)
     {
-        var author = _context.Authors.FirstOrDefault(a => a.AuthorId == id);
-        if (author == null)
-        {
-            throw new KeyNotFoundException($"Author with ID {id} not found.");
-        }
-        return _mapper.Map<AuthorGeneralDTO>(author);
+        return _mapper.Map<AuthorGeneralDTO>(_repository.GetById(id));
     }
 
-    public AuthorGeneralDTO Create(AuthorPropertiesDTO user)
+    public AuthorGeneralDTO Create(AuthorPropertiesDTO authorPropertiesDTO)
     {
-        var author = _mapper.Map<Author>(user);
-        _context.Authors.Add(author);
-        _context.SaveChanges();
-        return _mapper.Map<AuthorGeneralDTO>(author);
+        var authorCreate = _mapper.Map<Author>(authorPropertiesDTO);
+        authorCreate.AuthorId = GenerateAuthorId();
+        var author = _repository.Add(authorCreate);
+        var authorGeneralDto = _mapper.Map<AuthorGeneralDTO>(author);
+        return authorGeneralDto;
     }
 
     public AuthorGeneralDTO Update(AuthorGeneralDTO user)
     {
-        var existingAuthor = _context.Authors.FirstOrDefault(a => a.AuthorId == user.AuthorId);
-        if (existingAuthor == null)
-        {
-            throw new KeyNotFoundException($"Author with ID {user.AuthorId} not found.");
-        }
-
-        _mapper.Map(user, existingAuthor);
-        _context.SaveChanges();
-        return _mapper.Map<AuthorGeneralDTO>(existingAuthor);
+        var authorUpdate = _mapper.Map<Author>(user);
+        var author = _repository.Update(authorUpdate);
+        return _mapper.Map<AuthorGeneralDTO>(author);
     }
 
     public void Delete(int id)
     {
-        var author = _context.Authors.FirstOrDefault(a => a.AuthorId == id);
-        if (author == null)
-        {
-            throw new KeyNotFoundException($"Author with ID {id} not found.");
-        }
-        _context.Authors.Remove(author);
-        _context.SaveChanges();
+        _repository.Delete(id);
     }
 
     public IEnumerable<AuthorGeneralDTO> GetAuthorsByBook(int bookId)
     {
-        var authors = _context.Authors
-            .AsNoTracking()
-            .Where(a => a.BookAuthorList.Any(ba => ba.BookId == bookId))
-            .ToList();
-
+        var authors = _repository.GetAuthorsByBook(bookId);
         return _mapper.Map<IEnumerable<AuthorGeneralDTO>>(authors);
     }
+    private int GenerateAuthorId() => _repository.GetAll().Count() + 1;
 }

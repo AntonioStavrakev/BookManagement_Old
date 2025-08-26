@@ -4,6 +4,6 @@ namespace BookManagement.Core.Repositories;
 
 public interface IBookRepository : IGeneralRepository<Book>
 {
-    IEnumerable<Author> GetAuthorsByBook(int bookId);
-    IEnumerable<Book> GetBooksByPublisherId(int publisherId);
+    IEnumerable<Book> GetBooksByAuthor(int authorId);
+    IEnumerable<Book> GetBooksByPublisher(int publisherId);
 }

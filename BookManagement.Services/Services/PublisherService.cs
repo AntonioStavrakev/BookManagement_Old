@@ -1,6 +1,7 @@
 using AutoMapper;
 using BookManagement.Core.DTOs.PublisherDTOs;
 using BookManagement.Core.Models;
+using BookManagement.Core.Repositories;
 using BookManagement.Infrastructure.Entities;
 using BookManagement.Services.Models.AuthorModels.Interfaces;
 
@@ -8,57 +9,44 @@ namespace BookManagement.Services.Services;
 
 public class PublisherService : IPublisherService
 {
-    private readonly BookManagementDbContext _context;
+    private readonly IPublisherRepository _repository;
     private readonly IMapper _mapper;
-    public PublisherService(BookManagementDbContext context, IMapper mapper)
+    public PublisherService(IPublisherRepository repository, IMapper mapper)
     {
-        _context = context;
+        _repository = repository;
         _mapper = mapper;
     }
     public IEnumerable<PublisherGeneralDTO> GetAll()
     {
-        return _mapper.Map<IEnumerable<PublisherGeneralDTO>>(_context.Publishers.ToList());
+        var publishers = _repository.GetAll();
+        var result = _mapper.Map<IEnumerable<PublisherGeneralDTO>>(publishers);
+        return result;
     }
 
     public PublisherGeneralDTO GetById(int id)
     {
-        var publisher = _context.Publishers.FirstOrDefault(a => a.PublisherId == id);
-        if (publisher == null)
-        {
-            throw new KeyNotFoundException($"Publisher with ID {id} not found.");
-        }
-        return _mapper.Map<PublisherGeneralDTO>(publisher);
+        return _mapper.Map<PublisherGeneralDTO>(_repository.GetById(id));
     }
 
-    public PublisherGeneralDTO Create(PublisherPropertiesDTO user)
+    public PublisherGeneralDTO Create(PublisherPropertiesDTO dto)
     {
-        var publisher = _mapper.Map<Publisher>(user);
-        _context.Publishers.Add(publisher);
-        _context.SaveChanges();
-        return _mapper.Map<PublisherGeneralDTO>(publisher);
+        var publisherCreate = _mapper.Map<Publisher>(dto);
+        publisherCreate.PublisherId = GeneratePublisherId();
+        var publisher = _repository.Add(publisherCreate);
+        var publisherGeneralDto = _mapper.Map<PublisherGeneralDTO>(publisher);
+        return publisherGeneralDto;
     }
 
     public PublisherGeneralDTO Update(PublisherGeneralDTO user)
     {
-        var existingPublisher = _context.Publishers.FirstOrDefault(a => a.PublisherId == user.PublisherId);
-        if (existingPublisher == null)
-        {
-            throw new KeyNotFoundException($"Publisher with ID {user.PublisherId} not found.");
-        }
-
-        _mapper.Map(user, existingPublisher);
-        _context.SaveChanges();
-        return _mapper.Map<PublisherGeneralDTO>(existingPublisher);
+        var publisherUpdate = _mapper.Map<Publisher>(user);
+        var publisher = _repository.Update(publisherUpdate);
+        return _mapper.Map<PublisherGeneralDTO>(publisher);
     }
 
     public void Delete(int id)
     {
-        var publisher = _context.Publishers.FirstOrDefault(a => a.PublisherId == id);
-        if (publisher == null)
-        {
-            throw new KeyNotFoundException($"Publisher with ID {id} not found.");
-        }
-        _context.Publishers.Remove(publisher);
-        _context.SaveChanges();
+        _repository.Delete(id);
     }
+    private int GeneratePublisherId() => _repository.GetAll().Count() + 1;
 }

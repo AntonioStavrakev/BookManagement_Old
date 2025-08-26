@@ -1,6 +1,7 @@
 using AutoMapper;
 using BookManagement.Core.DTOs.BookDTOs;
 using BookManagement.Core.Models;
+using BookManagement.Core.Repositories;
 using BookManagement.Infrastructure.Entities;
 using BookManagement.Services.Models.AuthorModels.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -9,106 +10,62 @@ namespace BookManagement.Services.Services;
 
 public class BookService : IBookService
 {
-    private readonly BookManagementDbContext _context;
+    private readonly IBookRepository _repository;
     private readonly IMapper _mapper;
-    public BookService(BookManagementDbContext context, IMapper mapper)
+    public BookService(IBookRepository repository, IMapper mapper)
     {
-        _context = context;
+        _repository = repository;
         _mapper = mapper;
     }
     public IEnumerable<BookGeneralDTO> GetAll()
     {
-        return _mapper.Map<IEnumerable<BookGeneralDTO>>(_context.Books.ToList());
+        var books = _repository.GetAll();
+        var result = _mapper.Map<IEnumerable<BookGeneralDTO>>(books);
+        return result;
     }
 
     public BookGeneralDTO GetById(int id)
     {
-        var book = _context.Books.FirstOrDefault(a => a.BookId == id);
-        if (book == null)
-        {
-            throw new KeyNotFoundException($"Book with ID {id} not found.");
-        }
-        return _mapper.Map<BookGeneralDTO>(book);
+        return _mapper.Map<BookGeneralDTO>(_repository.GetById(id));
     }
     
 
-    public BookGeneralDTO Create(BookCreateDTO dto)
+    public BookGeneralDTO Create(BookPropertiesDTO dto)
     {
-        var book = new Book
-        {
-            Title = dto.Title,
-            Genre = dto.Genre,
-            PublishDate = dto.PublishDate,
-            PublisherId = dto.PublisherId
-        };
-
-        _context.Books.Add(book);
-        _context.SaveChanges();
-
-        // Добавяме връзките към авторите
-        if (dto.AuthorIDs != null && dto.AuthorIDs.Any())
-        {
-            foreach (var authorId in dto.AuthorIDs)
-            {
-                _context.BookAuthorList.Add(new BookAuthor
-                {
-                    BookId = book.BookId,
-                    AuthorId = authorId
-                });
-            }
-            _context.SaveChanges();
-        }
-
-        var result = _mapper.Map<BookGeneralDTO>(book);
-        result.AuthorIDs = dto.AuthorIDs?.ToList();
-
-        return result;
+        var bookCreate = _mapper.Map<Book>(dto);
+        bookCreate.BookId = GenerateBookId();
+        var book = _repository.Add(bookCreate);
+        var bookGeneralDto = _mapper.Map<BookGeneralDTO>(book);
+        return bookGeneralDto;
     }
 
 
-    public BookGeneralDTO Update(BookGeneralDTO user)
+    public BookGeneralDTO Update(BookGeneralDTO dto)
     {
-        var existingBook = _context.Books.FirstOrDefault(a => a.BookId == user.BookId);
-        if (existingBook == null)
-        {
-            throw new KeyNotFoundException($"Book with ID {user.BookId} not found.");
-        }
-
-        _mapper.Map(user, existingBook);
-        _context.SaveChanges();
-        return _mapper.Map<BookGeneralDTO>(existingBook);
+        var bookUpdate = _mapper.Map<Book>(dto);
+        var book = _repository.Update(bookUpdate);
+        return _mapper.Map<BookGeneralDTO>(book);
     }
 
     public void Delete(int id)
     {
-        var book = _context.Books.FirstOrDefault(a => a.BookId == id);
-        if (book == null)
-        {
-            throw new KeyNotFoundException($"Book with ID {id} not found.");
-        }
-        _context.Books.Remove(book);
-        _context.SaveChanges();
+        _repository.Delete(id);
     }
 
     public IEnumerable<BookGeneralDTO> GetBooksByAuthor(int authorId)
     {
-        var books = _context.Books
-            .AsNoTracking()
-            .Include(b => b.BookAuthorList)
-            .Where(b => b.BookAuthorList.Any(ba => ba.AuthorId == authorId))
-            .ToList();
-
-        return _mapper.Map<IEnumerable<BookGeneralDTO>>(books);
+        var books = _repository.GetBooksByAuthor(authorId);
+        var result = _mapper.Map<IEnumerable<BookGeneralDTO>>(books);
+        return result;
     }
 
     public IEnumerable<BookGeneralDTO> GetBooksByPublisher(int publisherId)
     {
-        var books = _context.Books
-            .AsNoTracking()
-            .Where(b => b.PublisherId == publisherId)
-            .ToList();
-
-        return _mapper.Map<IEnumerable<BookGeneralDTO>>(books);
+        var books = _repository.GetBooksByPublisher(publisherId);
+        var result = _mapper.Map<IEnumerable<BookGeneralDTO>>(books);
+        return result;
     }
+    
+    private int GenerateBookId() => _repository.GetAll().Count() + 1;
     
 }

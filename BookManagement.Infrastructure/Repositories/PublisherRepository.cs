@@ -15,7 +15,7 @@ public class PublisherRepository:IPublisherRepository
     {
         return _context.Publishers.ToList();
     }
-    public Publisher? GetById(int id)
+    public Publisher GetById(int id)
     {
         var entity = _context.Publishers.Find(id);
         if (entity == null)

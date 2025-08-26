@@ -17,7 +17,7 @@ public class AuthorRepository:IAuthorRepository
     {
         return _context.Authors.ToList();
     }
-    public Author? GetById(int id)
+    public Author GetById(int id)
     {
         var entity = _context.Authors.Find(id);
         if (entity == null)
@@ -64,10 +64,11 @@ public class AuthorRepository:IAuthorRepository
             throw new Exception("Author not found");
         }
     }
-    public IEnumerable<Book> GetBooksByAuthor(int authorId)
+    
+    public IEnumerable<Author> GetAuthorsByBook(int bookId)
     {
-        return _context.Books
-            .Where(b => b.BookAuthorList.Any(ba => ba.AuthorId == authorId))
+        return _context.Authors
+            .Where(a => a.BookAuthorList.Any(ba => ba.BookId == bookId))
             .ToList();
     }
 }

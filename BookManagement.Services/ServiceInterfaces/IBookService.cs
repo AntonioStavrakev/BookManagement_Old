@@ -6,8 +6,8 @@ public interface IBookService
 {
     IEnumerable<BookGeneralDTO> GetAll();
     BookGeneralDTO GetById(int id);
-    BookGeneralDTO Create(BookCreateDTO user);
-    BookGeneralDTO Update(BookGeneralDTO user);
+    BookGeneralDTO Create(BookPropertiesDTO user);
+    BookGeneralDTO Update(BookGeneralDTO dto);
     void Delete(int id);
     
     IEnumerable<BookGeneralDTO> GetBooksByAuthor(int authorId);

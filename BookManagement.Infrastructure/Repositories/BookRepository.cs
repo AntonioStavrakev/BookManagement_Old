@@ -17,7 +17,7 @@ public class BookRepository:IBookRepository
         var entities = _context.Books.ToList();
         return entities;
     }
-    public Book? GetById(int id)
+    public Book GetById(int id)
     {
         var entity = _context.Books.Find(id);
         if (entity == null)
@@ -33,6 +33,7 @@ public class BookRepository:IBookRepository
         {
             throw new ArgumentNullException(nameof(entity), "Book cannot be null");
         }
+        
         _context.Books.Add(entity);
         _context.SaveChanges();
         return entity;
@@ -62,15 +63,38 @@ public class BookRepository:IBookRepository
         }
     }
 
-    public IEnumerable<Author> GetAuthorsByBook(int bookId)
+    
+
+    public IEnumerable<Book> GetBooksByPublisher(int publisherId)
     {
-        return _context.Authors
-            .Where(a => a.BookAuthorList.Any(ba => ba.BookId == bookId))
+        return _context.Books.Where(b => b.PublisherId == publisherId)
+            .Select(b => new Book {
+                BookId = b.BookId,
+                Title = b.Title,
+                Genre = b.Genre,
+                PublishDate = b.PublishDate,
+                PublisherId = b.PublisherId,
+                BookAuthorList = b.BookAuthorList
+                    .Select(ba => new BookAuthor { BookId = ba.BookId, AuthorId = ba.AuthorId })
+                    .ToList()})
             .ToList();
     }
-
-    public IEnumerable<Book> GetBooksByPublisherId(int publisherId)
+    
+    public IEnumerable<Book> GetBooksByAuthor(int authorId)
     {
-        return _context.Books.Where(b => b.PublisherId == publisherId).ToList();
+        return _context.Books
+            .Where(b => b.BookAuthorList.Any(ba => ba.AuthorId == authorId))
+            .Select(b => new Book
+            {
+                BookId = b.BookId,
+                Title = b.Title,
+                Genre = b.Genre,
+                PublishDate = b.PublishDate,
+                PublisherId = b.PublisherId,
+                BookAuthorList = b.BookAuthorList
+                    .Select(ba => new BookAuthor { BookId = ba.BookId, AuthorId = ba.AuthorId })
+                    .ToList()
+            })
+            .ToList();
     }
 }
