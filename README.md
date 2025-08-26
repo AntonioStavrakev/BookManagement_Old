@@ -1,1 +1,1 @@
-Book Managemnt problem (task), assigned by VSG Bulgaria
+Book Management problem (task), assigned by VSG Bulgaria
