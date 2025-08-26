@@ -28,7 +28,7 @@ public class BookController : ControllerBase
     }
 
     [HttpPost]
-    public BookGeneralDTO Post([FromBody] BookPropertiesDTO book)
+    public BookGeneralDTO Post([FromBody] BookCreateDTO book)
     {
         return _bookService.Create(book);
     }
@@ -44,5 +44,19 @@ public class BookController : ControllerBase
     public void Delete(int id)
     {
         _bookService.Delete(id);
+    }
+
+    [HttpGet]
+    [Route("ByAuthor/{authorId}")]
+    public IEnumerable<BookGeneralDTO> GetBooksByAuthor(int authorId)
+    {
+        return _bookService.GetBooksByAuthor(authorId);
+    }
+
+    [HttpGet]
+    [Route("ByPublisher/{publisherId}")]
+    public IEnumerable<BookGeneralDTO> GetBooksByPublisher(int publisherId)
+    {
+        return _bookService.GetBooksByPublisher(publisherId);
     }
 }

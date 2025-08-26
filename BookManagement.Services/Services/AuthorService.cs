@@ -3,6 +3,7 @@ using BookManagement.Core.Models;
 using BookManagement.Infrastructure.Entities;
 using BookManagement.Services.Models.AuthorModels.DTOs;
 using BookManagement.Services.Models.AuthorModels.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookManagement.Services.Services;
 
@@ -60,5 +61,15 @@ public class AuthorService : IAuthorService
         }
         _context.Authors.Remove(author);
         _context.SaveChanges();
+    }
+
+    public IEnumerable<AuthorGeneralDTO> GetAuthorsByBook(int bookId)
+    {
+        var authors = _context.Authors
+            .AsNoTracking()
+            .Where(a => a.BookAuthorList.Any(ba => ba.BookId == bookId))
+            .ToList();
+
+        return _mapper.Map<IEnumerable<AuthorGeneralDTO>>(authors);
     }
 }

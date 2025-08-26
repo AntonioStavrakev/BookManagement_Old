@@ -1,9 +1,20 @@
 namespace BookManagement.Core.Models;
 
-public class BookAuthor(int bookId, int authorId)
+public class BookAuthor
 {
-    public int BookId { get; set; } = bookId;
+    
+
+    public int BookId { get; set; }
     public Book? Book { get; set; }
-    public int AuthorId { get; set; } = authorId;
+    public int AuthorId { get; set; }
     public Author? Author { get; set; }
+    
+    public BookAuthor()
+    {
+    }
+    public BookAuthor(int bookId, int authorId)
+    {
+        BookId = bookId;
+        AuthorId = authorId;
+    }
 }

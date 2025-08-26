@@ -9,4 +9,6 @@ public interface IAuthorService
     AuthorGeneralDTO Create(AuthorPropertiesDTO user);
     AuthorGeneralDTO Update(AuthorGeneralDTO user);
     void Delete(int id);
+    
+    IEnumerable<AuthorGeneralDTO> GetAuthorsByBook(int bookId);
 }

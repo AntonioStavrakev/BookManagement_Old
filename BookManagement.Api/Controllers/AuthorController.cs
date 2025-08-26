@@ -45,4 +45,11 @@ public class AuthorController : ControllerBase
     {
         _authorService.Delete(id);
     }
+
+    [HttpGet]
+    [Route("ByBook/{bookId}")]
+    public IEnumerable<AuthorGeneralDTO> GetAuthorsByBook(int bookId)
+    {
+        return _authorService.GetAuthorsByBook(bookId);
+    }
 }

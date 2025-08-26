@@ -3,6 +3,7 @@ using BookManagement.Core.DTOs.BookDTOs;
 using BookManagement.Core.Models;
 using BookManagement.Infrastructure.Entities;
 using BookManagement.Services.Models.AuthorModels.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookManagement.Services.Services;
 
@@ -29,14 +30,41 @@ public class BookService : IBookService
         }
         return _mapper.Map<BookGeneralDTO>(book);
     }
+    
 
-    public BookGeneralDTO Create(BookPropertiesDTO user)
+    public BookGeneralDTO Create(BookCreateDTO dto)
     {
-        var book = _mapper.Map<Book>(user);
+        var book = new Book
+        {
+            Title = dto.Title,
+            Genre = dto.Genre,
+            PublishDate = dto.PublishDate,
+            PublisherId = dto.PublisherId
+        };
+
         _context.Books.Add(book);
         _context.SaveChanges();
-        return _mapper.Map<BookGeneralDTO>(book);
+
+        // Добавяме връзките към авторите
+        if (dto.AuthorIDs != null && dto.AuthorIDs.Any())
+        {
+            foreach (var authorId in dto.AuthorIDs)
+            {
+                _context.BookAuthorList.Add(new BookAuthor
+                {
+                    BookId = book.BookId,
+                    AuthorId = authorId
+                });
+            }
+            _context.SaveChanges();
+        }
+
+        var result = _mapper.Map<BookGeneralDTO>(book);
+        result.AuthorIDs = dto.AuthorIDs?.ToList();
+
+        return result;
     }
+
 
     public BookGeneralDTO Update(BookGeneralDTO user)
     {
@@ -61,4 +89,26 @@ public class BookService : IBookService
         _context.Books.Remove(book);
         _context.SaveChanges();
     }
+
+    public IEnumerable<BookGeneralDTO> GetBooksByAuthor(int authorId)
+    {
+        var books = _context.Books
+            .AsNoTracking()
+            .Include(b => b.BookAuthorList)
+            .Where(b => b.BookAuthorList.Any(ba => ba.AuthorId == authorId))
+            .ToList();
+
+        return _mapper.Map<IEnumerable<BookGeneralDTO>>(books);
+    }
+
+    public IEnumerable<BookGeneralDTO> GetBooksByPublisher(int publisherId)
+    {
+        var books = _context.Books
+            .AsNoTracking()
+            .Where(b => b.PublisherId == publisherId)
+            .ToList();
+
+        return _mapper.Map<IEnumerable<BookGeneralDTO>>(books);
+    }
+    
 }

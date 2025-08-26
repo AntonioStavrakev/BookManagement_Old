@@ -9,4 +9,6 @@ public interface IPublisherService
     PublisherGeneralDTO Create(PublisherPropertiesDTO user);
     PublisherGeneralDTO Update(PublisherGeneralDTO user);
     void Delete(int id);
+    
+    
 }

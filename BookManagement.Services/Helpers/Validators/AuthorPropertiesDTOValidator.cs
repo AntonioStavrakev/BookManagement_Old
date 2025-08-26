@@ -7,6 +7,9 @@ public class AuthorPropertiesDTOValidator : AbstractValidator<AuthorPropertiesDT
 {
     public AuthorPropertiesDTOValidator()
     {
-        RuleFor(t => t.Biography).NotEmpty().WithMessage("The biography cannot be empty.");
+        RuleFor(t => t.Biography)
+            .NotEmpty().WithMessage("The biography cannot be empty.");
+        RuleFor(t => t.DateOfBirth)
+            .LessThan(DateTime.Now).WithMessage("The date of birth must be in the past.");
     }
 }
